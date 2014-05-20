@@ -209,18 +209,18 @@ $('.player-class-archer').click(function () {
 // "rolls" a random number to determine the battle backdrop
 var battleStage = function () {
 	var stageChance = Math.random();
+	$('.battlefield-image').attr('class', 'battlefield-image'); // resets battle-field image to nothing, no extra classes
 	if (stageChance <0.25) {
-		$('.battlefield-image').addClass('field');
+		$('.battlefield-image').toggleClass('field');
 	}
 	else if (stageChance >= 0.25 && stageChance <0.5) {
-		$('.battlefield-image').addClass('tech');
+		$('.battlefield-image').toggleClass('tech');
 	}
 	else if (stageChance >= 0.5 && stageChance <0.75) {
-		$('.battlefield-image').addClass('castle');
+		$('.battlefield-image').toggleClass('castle');
 	}
-
 	else {
-		$('.battlefield-image').addClass('forest');
+		$('.battlefield-image').toggleClass('forest');
 	}
 };
 
@@ -235,16 +235,17 @@ var enemyProcess = function (selectedEnemy) {
 $('.monster-select').css('opacity', '0');
 	setTimeout(function (){
 		$('.monster-select').hide();
-	$('.battlefield').show().css('opacity', '1');
-	battleStage();
+		$('.battlefield').show().css('opacity', '1');
+		battleStage();
+		$('.opponent').attr('class','opponent'); // resets the opponent attributes to the defaul/blank
 	},400);
 	setTimeout(function() {
-		$('.opponent').addClass(selectedEnemy.toLowerCase()+'-opponent').animate({right: '350px', opacity: '1'}, 500);
-		$('.hero').addClass(player.avatar).animate({left: '350px', opacity: '1'}, 500);
-	}, 400);
+		$('.opponent').addClass(selectedEnemy.toLowerCase()+'-opponent');
+		$('.hero').addClass(player.avatar);
+	}, 600);
 	setTimeout(function () {
 		$('.hero-name').prepend(player.constructor.name);
-		// $('.enemy-name').text().slice(0, selectedEnemy.length);
+		$('.enemy-name').text(' ');
 		$('.enemy-name').prepend(selectedEnemy);
 		$('.hero-stats').text(' ');
 		$('.hero-stats').append(showStats(player));

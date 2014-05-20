@@ -188,6 +188,10 @@ body * {
                     opacity .2s linear;
     }
 
+    & .fiend-opponent, & .goblin-opponent, & .dragon-opponent, & .behemoth-opponent {
+        right: 350px; 
+        opacity: 1;
+    }
 
     & .fiend-opponent {
         background: url(../images/fiend.gif) 0 0 / contain no-repeat;
@@ -216,6 +220,10 @@ body * {
         transition: left   .5s linear,
                     opacity .2s linear;
     }
+    & .archer, & .b-Mage, & .w-Mage, & .knight {
+        left: 350px;
+        opacity: 1;
+    }
 
     & .archer {
         background: url(../images/archer.gif) 0 0 / contain no-repeat;
@@ -243,7 +251,7 @@ body * {
     left: 0;
 
 }
-.enemy-name, .hero-name {
+.enemy-name-box, .hero-name {
     width: 476px;
     height: 150px;
     position: relative;
@@ -285,18 +293,24 @@ body * {
     }
 }
 
-.enemy-name {
-    font-size: 30px;
-    font-weight: bold;
+.enemy-name-box{
     padding-left: 20px;
     text-align: left;
     color: lighten($white, 5%);
     font-family: serif;
     float: right;
+
+    & .enemy-name {
+        font-size: 30px;
+        font-weight: bold;
+        font-family: serif;
+    }
+    
     & ul {
         list-style: none;
 
         & li {
+            font-weight: bold;
             font-family: serif;
         }
     }    
