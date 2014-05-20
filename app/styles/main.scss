@@ -108,7 +108,6 @@ body * {
     & .fiend, & .dragon, & .goblin, & .behemoth { 
         height: 80px;
         width: 80px;
-        background-size: contain;
         display: inline-block;
         margin: 250px 25px 0;
         cursor: pointer;
@@ -135,4 +134,43 @@ body * {
         background: url(../images/behemoth.png) no-repeat;
     }
 }
+
+
+///// Batlles //////////////////////////////////////
+////////////////////////////////////////////////////
+
+.battlefield {
+    display: none;
+    opacity: 0;
+    margin: 40px auto;
+    width: 960px;
+    min-width: 960px;
+    height: 640px;
+    min-height: 640px;
+    text-align: center;
+    transition: all .7s linear;
+    position: relative;
+
+    & .battlefield-image {
+        height: 640px;
+        width: 960px;
+    }
+
+    & .opponent {
+        position: absolute;
+        right: 0;
+        top: 50%;
+        height: 80px;
+        width: 80px;
+        display: inline-block;
+        opacity: 0;
+        transition: right   .5s ease-in,
+                    opacity .2s linear;
+    }
+
+    & .opponent-hover {
+        
+    }
+}
+
 

@@ -3,7 +3,7 @@
 ///// Global Variables /////////////////////////////
 ////////////////////////////////////////////////////
 var player;
-
+var monster;
 
 var playerStatsTemplate = _.template($('.character-stats').text());
 
@@ -124,22 +124,22 @@ function ToughEnemy() {
 $('.player-class-bMage').on('mouseenter', function () {
 	var test = new BlackMage();
 	setTimeout(function() {
-	$('.bMage-stats').append(showStats(test));
-}, 400);
+	$('.bMage-stats').stop(true, true).append(showStats(test));
+}, 200);
 });
 $('.player-class-bMage').on('mouseleave', function () {
-	$('.bMage-stats').html('');
+	$('.bMage-stats').stop(true, true).html('');
 });
 
 //white mage hover stats
 $('.player-class-wMage').on('mouseenter', function () {
 	var test = new WhiteMage();
 	setTimeout(function() {
-	$('.wMage-stats').append(showStats(test));
-}, 400);
+	$('.wMage-stats').stop(true, true).append(showStats(test));
+}, 200);
 });
 $('.player-class-wMage').on('mouseleave', function () {
-	$('.wMage-stats').html('');
+	$('.wMage-stats').stop(true, true).html('');
 });
 
 
@@ -147,22 +147,22 @@ $('.player-class-wMage').on('mouseleave', function () {
 $('.player-class-knight').on('mouseenter', function () {
 	var test = new Knight();
 	setTimeout(function() {
-	$('.knight-stats').append(showStats(test));
-}, 400);
+	$('.knight-stats').stop(true, true).append(showStats(test));
+}, 200);
 });
 $('.player-class-knight').on('mouseleave', function () {
-	$('.knight-stats').html('');
+	$('.knight-stats').stop(true, true).html('');
 });
 
 //archer hover stats
 $('.player-class-archer').on('mouseenter', function () {
 	var test = new Archer();
 	setTimeout(function() {
-	$('.archer-stats').append(showStats(test));
-}, 400);
+	$('.archer-stats').stop(true, true).append(showStats(test));
+}, 200);
 });
 $('.player-class-archer').on('mouseleave', function () {
-	$('.archer-stats').html('');
+	$('.archer-stats').stop(true, true).html('');
 });
 
 
@@ -173,7 +173,7 @@ $('.player-class-bMage').click(function () {
 	$('.player-selector').remove();
 	setTimeout(function () {
 	$('.monster-select').css('opacity','1');
-	},200)
+	},200);
 });
 
 // if selection is white mage
@@ -182,7 +182,7 @@ $('.player-class-wMage').click(function () {
 	$('.player-selector').remove();
 	setTimeout(function () {
 	$('.monster-select').css('opacity','1');
-	},200)
+	},200);
 });
 
 // if selection is knight
@@ -191,7 +191,7 @@ $('.player-class-knight').click(function () {
 	$('.player-selector').remove();
 	setTimeout(function () {
 	$('.monster-select').css('opacity','1');
-	},200)
+	},200);
 });
 
 // if selection is archer
@@ -200,9 +200,80 @@ $('.player-class-archer').click(function () {
 	$('.player-selector').remove();
 	setTimeout(function () {
 	$('.monster-select').css('opacity','1');
-	},200)
+	},200);
 });
 
 
+// battlestage
 
+var battleStage = function () {
+	var stageChance = Math.random();
+	if (stageChance <0.25) {
+		$('.battlefield-image').css('background', 'url(../images/castle.png) 0 0 / cover no-repeat');
+	}
+	else if (stageChance >= 0.25 && stageChance <0.5) {
+		$('.battlefield-image').css('background', 'url(../images/tech.png) 0 0 / cover no-repeat');
+	}
+	else if (stageChance >= 0.5 && stageChance <0.75) {
+		$('.battlefield-image').css('background', 'url(../images/field.png) 0 0 / cover no-repeat');
+	}
+
+	else {
+		$('.battlefield-image').css('background', 'url(../images/forest.png) 0 0 / cover no-repeat');
+	}
+};
+
+// monster select
+
+$('.fiend').click(function (){
+	monster = new WeakEnemy();
+	$('.monster-select').css('opacity', '0');
+	setTimeout(function (){
+		$('.monster-select').hide();
+	$('.battlefield').show().css('opacity', '1');
+	battleStage();
+	},400);
+	setTimeout(function() {
+		$('.opponent').css('background', 'url(../images/fiend.gif) 0 0 / contain no-repeat').animate({right: '350px', opacity: '1'}, 500);
+	}, 400);
+});
+
+$('.goblin').click(function (){
+	monster = new WeakEnemy();
+	$('.monster-select').css('opacity', '0');
+	setTimeout(function (){
+		$('.monster-select').hide();
+	$('.battlefield').show().css('opacity', '1');
+	battleStage();
+	},400);
+	setTimeout(function() {
+		$('.opponent').css('background', 'url(../images/goblin.gif) 0 0 / contain no-repeat').animate({right: '350px', opacity: '1'}, 500);
+	}, 400);
+});
+
+$('.dragon').click(function (){
+	monster = new MidEnemy();
+	$('.monster-select').css('opacity', '0');
+	setTimeout(function (){
+		$('.monster-select').hide();
+	$('.battlefield').show().css('opacity', '1');
+	battleStage();
+	},400);
+	setTimeout(function() {
+		$('.opponent').css('background', 'url(../images/dragon.gif) 0 0 / contain no-repeat').animate({right: '350px', opacity: '1'}, 500);
+	}, 400);
+});
+
+$('.behemoth').click(function(){
+	monster = new ToughEnemy();
+	$('.monster-select').css('opacity', '0');
+	setTimeout(function (){
+		$('.monster-select').hide();
+	$('.battlefield').show().css('opacity', '1');
+	battleStage();
+	},400);
+	setTimeout(function() {
+		$('.opponent').css('background', 'url(../images/behemoth.png) 0 0 / contain no-repeat').animate({right: '350px', opacity: '1'}, 500);
+	}, 400);
+});
 
