@@ -13,8 +13,9 @@ var showStats = function (character) {
 
 
 var baseAttack = function (target) {
-	target.hp = target.hp - (Math.floor(Math.random() * 5) * (this.str)/2);
-	console.log("The enemy has " + target.hp + " hit points left.");
+	var myAttack = (Math.floor(Math.random() * 5) + (this.str)/2);
+	target.hp = target.hp - myAttack;
+	$('.battle-log-text').append("You attacked the enemy for " + myAttack+" points of damage. <br> The enemy has " + target.hp + " hit points left.<br>");
 };
 
 var specialAttack = function (target) {
@@ -67,7 +68,7 @@ function WhiteMage() {
 function Knight() {
 	this.hp = 22;
 	this.mp = 2;
-	this.str = 18;
+	this.str = 12;
 	this.magic = 2;
 	this.def = 14;
 	this.attack = baseAttack;
@@ -78,7 +79,7 @@ function Knight() {
 function Archer() {
 	this.hp = 16;
 	this.mp = 4;
-	this.str = 10;
+	this.str = 7;
 	this.magic = 10;
 	this.def = 8;
 	this.attack = baseAttack;
@@ -243,8 +244,11 @@ $('.monster-select').css('opacity', '0');
 	}, 400);
 	setTimeout(function () {
 		$('.hero-name').prepend(player.constructor.name);
+		// $('.enemy-name').text().slice(0, selectedEnemy.length);
 		$('.enemy-name').prepend(selectedEnemy);
+		$('.hero-stats').text(' ');
 		$('.hero-stats').append(showStats(player));
+		$('.enemy-stats').text(' ');
 		$('.enemy-stats').append(showStats(monster));
 		$('.battle-log').animate({'opacity': '1'}, 2400);
 	},100);
@@ -278,8 +282,29 @@ $('.behemoth').click(function(){
 
 ////// Fight /////////
 
+var isItDead = function () {
+	if (monster.hp <= 0) {
+		$('.battle-log-text').html(' ');
+		$('.battle-log-text').append("You have defeated the enemy!");
+		setTimeout(function () {
+		$('.battlefield').hide();
+		$('.monster-select').show().css('opacity','1');
+		$('.battle-log-text').html(' ');
+		monster = {};
+	},1500);
+	}
+};
 
 $('.attack').click(function(){
+	$('.battle-log-text').animate({opacity: '0'}, 100);
+	$('.hero').css({ 'left': '+=140px', 'transition': 'all .2s ease-in'});
+	setTimeout(function (){
+	$('.hero').css({ 'left': '-=140px'});
+	$('.battle-log-text').html(' ');
 	player.attack(monster);
-
+	$('.battle-log-text').animate({opacity: '1'}, 100);
+	$('.enemy-stats').html(' ');
+	$('.enemy-stats').append(showStats(monster));
+	isItDead();
+	},200);
 });
