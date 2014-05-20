@@ -30,6 +30,7 @@ body * {
     display: inline-block;
     line-height: 80px;
     position: relative;
+    margin-right: 25px;
 
     &:hover .bMage-stats, &:hover .wMage-stats, &:hover .knight-stats, &:hover .archer-stats{
         position: absolute;
