@@ -157,6 +157,23 @@ body * {
         width: 960px;
     }
 
+    & .field {
+        background: url(../images/field.png) 0 0 / cover no-repeat;
+    }
+
+    & .castle {
+        background: url(../images/castle.png) 0 0 / cover no-repeat;
+    }
+
+    & .forest {
+        background: url(../images/forest.png) 0 0 / cover no-repeat;
+    }
+
+    & .tech {
+        background: url(../images/tech.png) 0 0 / cover no-repeat;
+    }
+
+
     & .opponent {
         position: absolute;
         right: 0;
@@ -171,6 +188,22 @@ body * {
 
     & .opponent-hover {
         
+    }
+
+    & .fiend-opponent {
+        background: url(../images/fiend.gif) 0 0 / contain no-repeat;
+    }
+
+    & .goblin-opponent {
+        background: url(../images/goblin.gif) 0 0 / contain no-repeat;
+    }
+
+    & .dragon-opponent {
+        background: url(../images/dragon.gif) 0 0 / contain no-repeat;
+    }
+
+    & .behemoth-opponent {
+        background: url(../images/behemoth.png) 0 0 / contain no-repeat;
     }
 }
 

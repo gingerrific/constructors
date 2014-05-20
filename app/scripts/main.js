@@ -209,17 +209,17 @@ $('.player-class-archer').click(function () {
 var battleStage = function () {
 	var stageChance = Math.random();
 	if (stageChance <0.25) {
-		$('.battlefield-image').css('background', 'url(../images/castle.png) 0 0 / cover no-repeat');
+		$('.battlefield-image').addClass('field');
 	}
 	else if (stageChance >= 0.25 && stageChance <0.5) {
-		$('.battlefield-image').css('background', 'url(../images/tech.png) 0 0 / cover no-repeat');
+		$('.battlefield-image').addClass('tech');
 	}
 	else if (stageChance >= 0.5 && stageChance <0.75) {
-		$('.battlefield-image').css('background', 'url(../images/field.png) 0 0 / cover no-repeat');
+		$('.battlefield-image').addClass('castle');
 	}
 
 	else {
-		$('.battlefield-image').css('background', 'url(../images/forest.png) 0 0 / cover no-repeat');
+		$('.battlefield-image').addClass('forest');
 	}
 };
 
@@ -234,7 +234,7 @@ $('.fiend').click(function (){
 	battleStage();
 	},400);
 	setTimeout(function() {
-		$('.opponent').css('background', 'url(images/fiend.gif) 0 0 / contain no-repeat').animate({right: '350px', opacity: '1'}, 500);
+		$('.opponent').addClass('fiend-opponent').animate({right: '350px', opacity: '1'}, 500);
 	}, 400);
 });
 
@@ -247,7 +247,7 @@ $('.goblin').click(function (){
 	battleStage();
 	},400);
 	setTimeout(function() {
-		$('.opponent').css('background', 'url(images/goblin.gif) 0 0 / contain no-repeat').animate({right: '350px', opacity: '1'}, 500);
+		$('.opponent').addClass('goblin-opponent').animate({right: '350px', opacity: '1'}, 500);
 	}, 400);
 });
 
@@ -260,7 +260,7 @@ $('.dragon').click(function (){
 	battleStage();
 	},400);
 	setTimeout(function() {
-		$('.opponent').css('background', 'url(images/dragon.gif) 0 0 / contain no-repeat').animate({right: '350px', opacity: '1'}, 500);
+		$('.opponent').addClass('dragon-opponent').animate({right: '350px', opacity: '1'}, 500);
 	}, 400);
 });
 
@@ -273,7 +273,7 @@ $('.behemoth').click(function(){
 	battleStage();
 	},400);
 	setTimeout(function() {
-		$('.opponent').css('background', 'url(images/behemoth.png) 0 0 / contain no-repeat').animate({right: '350px', opacity: '1'}, 500);
+		$('.opponent').addClass('behemoth-opponent').animate({right: '350px', opacity: '1'}, 500);
 	}, 400);
 });
 
