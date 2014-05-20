@@ -79,3 +79,60 @@ body * {
 ////////////////////////////////////////////////////
 
 
+.monster-select {
+    opacity: 0;
+    margin: 40px auto;
+    width: 960px;
+    min-width: 960px;
+    height: 640px;
+    min-height: 640px;
+    background: url(../images/ffPlain.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    position: relative;
+    text-align: center;
+    transition: all .3s linear;
+
+    & .monster-select-text {
+        position: absolute;
+        background: transparent;
+        font-weight: bolder;
+        font-size: 32px;
+        color: white;
+        text-shadow: 1px 1px 1px darken(white, 30%);
+        bottom: 0;
+        left: 50%;
+        margin-left: -187px;
+    }
+
+    & .fiend, & .dragon, & .goblin, & .behemoth { 
+        height: 80px;
+        width: 80px;
+        background-size: contain;
+        display: inline-block;
+        margin: 250px 25px 0;
+        cursor: pointer;
+
+        &:hover {
+            -webkit-transform: scale(2, 2);
+                    transform: scale(2, 2);
+        }
+    }
+
+    & .fiend {   
+        background: url(../images/fiend.gif) no-repeat;
+    }
+
+    & .dragon {
+        background: url(../images/dragon.gif) no-repeat;
+    }
+
+    & .goblin {
+        background: url(../images/goblin.gif) no-repeat;
+    }
+
+    & .behemoth {
+        background: url(../images/behemoth.png) no-repeat;
+    }
+}
+

@@ -37,6 +37,10 @@ var enemySpecialAttack = function () {
 ///// Constructors /////////////////////////////////
 ////////////////////////////////////////////////////
 
+///// Classes & Enemies ////////////////////////////
+////////////////////////////////////////////////////
+
+
 
 function BlackMage() {
 	this.hp = 12;
@@ -99,9 +103,21 @@ function MidEnemy() {
 	this.spAttack = enemySpecialAttack;
 }
 
-
+// tough enemy
+function ToughEnemy() {
+	this.hp = 20 + (Math.round(Math.random()*20));
+	this.mp = 12 + (Math.round(Math.random()*20));
+	this.str = 20 + (Math.round(Math.random()*20));
+	this.magic = 20 + (Math.round(Math.random()*20));
+	this.def = 20 + (Math.round(Math.random()*20));
+	this.attack = enemyBaseAttack;
+	this.spAttack = enemySpecialAttack;
+}
 
 ///// Interactions /////////////////////////////////
+////////////////////////////////////////////////////
+
+///// Char Select //////////////////////////////////
 ////////////////////////////////////////////////////
 
 //black mage hover stats
@@ -155,25 +171,38 @@ $('.player-class-archer').on('mouseleave', function () {
 $('.player-class-bMage').click(function () {
 	player = new BlackMage();
 	$('.player-selector').remove();
+	setTimeout(function () {
+	$('.monster-select').css('opacity','1');
+	},200)
 });
 
 // if selection is white mage
 $('.player-class-wMage').click(function () {
 	player = new WhiteMage();
 	$('.player-selector').remove();
+	setTimeout(function () {
+	$('.monster-select').css('opacity','1');
+	},200)
 });
 
 // if selection is knight
 $('.player-class-knight').click(function () {
 	player = new Knight();
 	$('.player-selector').remove();
+	setTimeout(function () {
+	$('.monster-select').css('opacity','1');
+	},200)
 });
 
 // if selection is archer
 $('.player-class-archer').click(function () {
 	player = new Archer();
 	$('.player-selector').remove();
+	setTimeout(function () {
+	$('.monster-select').css('opacity','1');
+	},200)
 });
+
 
 
 
