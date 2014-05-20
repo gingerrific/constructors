@@ -234,7 +234,7 @@ $('.fiend').click(function (){
 	battleStage();
 	},400);
 	setTimeout(function() {
-		$('.opponent').css('background', 'url(../images/fiend.gif) 0 0 / contain no-repeat').animate({right: '350px', opacity: '1'}, 500);
+		$('.opponent').css('background', 'url(images/fiend.gif) 0 0 / contain no-repeat').animate({right: '350px', opacity: '1'}, 500);
 	}, 400);
 });
 
@@ -247,7 +247,7 @@ $('.goblin').click(function (){
 	battleStage();
 	},400);
 	setTimeout(function() {
-		$('.opponent').css('background', 'url(../images/goblin.gif) 0 0 / contain no-repeat').animate({right: '350px', opacity: '1'}, 500);
+		$('.opponent').css('background', 'url(images/goblin.gif) 0 0 / contain no-repeat').animate({right: '350px', opacity: '1'}, 500);
 	}, 400);
 });
 
@@ -260,7 +260,7 @@ $('.dragon').click(function (){
 	battleStage();
 	},400);
 	setTimeout(function() {
-		$('.opponent').css('background', 'url(../images/dragon.gif) 0 0 / contain no-repeat').animate({right: '350px', opacity: '1'}, 500);
+		$('.opponent').css('background', 'url(images/dragon.gif) 0 0 / contain no-repeat').animate({right: '350px', opacity: '1'}, 500);
 	}, 400);
 });
 
@@ -273,7 +273,7 @@ $('.behemoth').click(function(){
 	battleStage();
 	},400);
 	setTimeout(function() {
-		$('.opponent').css('background', 'url(../images/behemoth.png) 0 0 / contain no-repeat').animate({right: '350px', opacity: '1'}, 500);
+		$('.opponent').css('background', 'url(images/behemoth.png) 0 0 / contain no-repeat').animate({right: '350px', opacity: '1'}, 500);
 	}, 400);
 });
 
