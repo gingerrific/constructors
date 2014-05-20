@@ -50,6 +50,7 @@ function BlackMage() {
 	this.def = 6;
 	this.attack = baseAttack;
 	this.spAttack = specialAttack;
+	this.avatar = "b-Mage";
 }
 
 function WhiteMage() {
@@ -60,6 +61,7 @@ function WhiteMage() {
 	this.def = 6;
 	this.attack = baseAttack;
 	this.spAttack = specialAttack;
+	this.avatar = "w-Mage";
 }
 
 function Knight() {
@@ -70,6 +72,7 @@ function Knight() {
 	this.def = 14;
 	this.attack = baseAttack;
 	this.spAttack = specialAttack;
+	this.avatar = "knight";
 }
 
 function Archer() {
@@ -80,6 +83,7 @@ function Archer() {
 	this.def = 8;
 	this.attack = baseAttack;
 	this.spAttack = specialAttack;
+	this.avatar = "archer";
 }
 // weak enemy
 function WeakEnemy() {
@@ -165,47 +169,43 @@ $('.player-class-archer').on('mouseleave', function () {
 	$('.archer-stats').stop(true, true).html('');
 });
 
-
-
-// if selection is black mage
-$('.player-class-bMage').click(function () {
-	player = new BlackMage();
+// removes the player selection menu, waits 200 mSeconds and shows the monster select screen
+var playerMenuAdvance = function () {
 	$('.player-selector').remove();
 	setTimeout(function () {
 	$('.monster-select').css('opacity','1');
 	},200);
+};
+
+// if selection is black mage
+$('.player-class-bMage').click(function () {
+	player = new BlackMage();
+	playerMenuAdvance();
 });
 
 // if selection is white mage
 $('.player-class-wMage').click(function () {
 	player = new WhiteMage();
-	$('.player-selector').remove();
-	setTimeout(function () {
-	$('.monster-select').css('opacity','1');
-	},200);
+	playerMenuAdvance();
 });
 
 // if selection is knight
 $('.player-class-knight').click(function () {
 	player = new Knight();
-	$('.player-selector').remove();
-	setTimeout(function () {
-	$('.monster-select').css('opacity','1');
-	},200);
+	playerMenuAdvance();
 });
 
 // if selection is archer
 $('.player-class-archer').click(function () {
 	player = new Archer();
-	$('.player-selector').remove();
-	setTimeout(function () {
-	$('.monster-select').css('opacity','1');
-	},200);
+	playerMenuAdvance();
 });
+
 
 
 // battlestage
 
+// "rolls" a random number to determine the battle backdrop
 var battleStage = function () {
 	var stageChance = Math.random();
 	if (stageChance <0.25) {
@@ -225,55 +225,61 @@ var battleStage = function () {
 
 // monster select
 
-$('.fiend').click(function (){
-	monster = new WeakEnemy();
-	$('.monster-select').css('opacity', '0');
+// reduces the opacity on the enemy seleciton screen, then 400ms later hides it
+// then it shows the battlefield backdrop and raises the opacity based on the classes transition based on the battlestage() roll
+// next the appropriate class is added to the opponent and hero divs on the battle screen and animated in towards each other
+// then the stats for both hero and enemy are run through the template to provide live stats
+// finally the battle start screen is displayed after a pause
+var enemyProcess = function (selectedEnemy) {
+$('.monster-select').css('opacity', '0');
 	setTimeout(function (){
 		$('.monster-select').hide();
 	$('.battlefield').show().css('opacity', '1');
 	battleStage();
 	},400);
 	setTimeout(function() {
-		$('.opponent').addClass('fiend-opponent').animate({right: '350px', opacity: '1'}, 500);
+		$('.opponent').addClass(selectedEnemy.toLowerCase()+'-opponent').animate({right: '350px', opacity: '1'}, 500);
+		$('.hero').addClass(player.avatar).animate({left: '350px', opacity: '1'}, 500);
 	}, 400);
+	setTimeout(function () {
+		$('.hero-name').prepend(player.constructor.name);
+		$('.enemy-name').prepend(selectedEnemy);
+		$('.hero-stats').append(showStats(player));
+		$('.enemy-stats').append(showStats(monster));
+		$('.battle-log').animate({'opacity': '1'}, 2400);
+	},100);
+	setTimeout(function () {
+		$('.attack-menu').show();
+	}, 3000);
+};
+
+
+
+$('.fiend').click(function (){
+	monster = new WeakEnemy();
+	enemyProcess('Fiend');
 });
 
 $('.goblin').click(function (){
 	monster = new WeakEnemy();
-	$('.monster-select').css('opacity', '0');
-	setTimeout(function (){
-		$('.monster-select').hide();
-	$('.battlefield').show().css('opacity', '1');
-	battleStage();
-	},400);
-	setTimeout(function() {
-		$('.opponent').addClass('goblin-opponent').animate({right: '350px', opacity: '1'}, 500);
-	}, 400);
+	enemyProcess('Goblin');
 });
 
 $('.dragon').click(function (){
 	monster = new MidEnemy();
-	$('.monster-select').css('opacity', '0');
-	setTimeout(function (){
-		$('.monster-select').hide();
-	$('.battlefield').show().css('opacity', '1');
-	battleStage();
-	},400);
-	setTimeout(function() {
-		$('.opponent').addClass('dragon-opponent').animate({right: '350px', opacity: '1'}, 500);
-	}, 400);
+	enemyProcess('Dragon');
 });
 
 $('.behemoth').click(function(){
 	monster = new ToughEnemy();
-	$('.monster-select').css('opacity', '0');
-	setTimeout(function (){
-		$('.monster-select').hide();
-	$('.battlefield').show().css('opacity', '1');
-	battleStage();
-	},400);
-	setTimeout(function() {
-		$('.opponent').addClass('behemoth-opponent').animate({right: '350px', opacity: '1'}, 500);
-	}, 400);
+	enemyProcess('Behemoth');
 });
 
+
+////// Fight /////////
+
+
+$('.attack').click(function(){
+	player.attack(monster);
+
+});

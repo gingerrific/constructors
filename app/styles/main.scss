@@ -5,7 +5,7 @@
 ///// Colors ///////////////////////////////////////
 ////////////////////////////////////////////////////
 $black: #333;
-
+$white: #F0F0F0;
 
 
 
@@ -75,7 +75,6 @@ body * {
 
 
 
-
 ///// Characters ///////////////////////////////////
 ////////////////////////////////////////////////////
 
@@ -140,6 +139,8 @@ body * {
 ///// Batlles //////////////////////////////////////
 ////////////////////////////////////////////////////
 
+
+// Battlefield GUI
 .battlefield {
     display: none;
     opacity: 0;
@@ -151,6 +152,7 @@ body * {
     text-align: center;
     transition: all .7s linear;
     position: relative;
+    overflow: hidden;
 
     & .battlefield-image {
         height: 640px;
@@ -186,9 +188,6 @@ body * {
                     opacity .2s linear;
     }
 
-    & .opponent-hover {
-        
-    }
 
     & .fiend-opponent {
         background: url(../images/fiend.gif) 0 0 / contain no-repeat;
@@ -205,6 +204,137 @@ body * {
     & .behemoth-opponent {
         background: url(../images/behemoth.png) 0 0 / contain no-repeat;
     }
+
+    .hero {
+        position: absolute;
+        left: 0;
+        top: 50%;
+        height: 80px;
+        width: 80px;
+        display: inline-block;
+        opacity: 0;
+        transition: left   .5s ease-in,
+                    opacity .2s linear;
+    }
+
+    & .archer {
+        background: url(../images/archer.gif) 0 0 / contain no-repeat;
+    }
+
+    & .b-Mage {
+        background: url(../images/blackmage.gif) 0 0 / contain no-repeat;
+    }
+
+    & .w-Mage {
+        background: url(../images/whitemage.gif) 0 0 / contain no-repeat;
+    }
+
+    & .knight {
+        background: url(../images/knight.gif) 0 0 / contain no-repeat;
+    }
+    
+}
+
+// battle
+
+.battle-stats {
+    position: absolute;
+    bottom: 2px;
+    left: 0;
+
+}
+.enemy-name, .hero-name {
+    width: 476px;
+    height: 150px;
+    position: relative;
+    display: inline-block;
+    background: linear-gradient(to right, blue 0%, darken(blue, 5%) 100%);
+    border: 3px solid darken(white, 10%);
+    border-radius: 4px;
+    box-shadow: inset 0 0 4px darken(white, 60%);
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 
+.hero-name,{
+    font-size: 30px;
+    font-weight: bold;
+    padding-left: 20px;
+    text-align: left;
+    color: lighten($white, 5%);
+    font-family: serif;
+    float: left;
+    margin-right: 1px;
+    margin-left: 4px;
+
+}
+
+.hero-stats {
+    height: 100px;
+    width: 100%;
+    font-family: serif;
+
+    & ul {
+        list-style: none;
+
+        & li {
+            font-family: serif;
+        }
+    }
+}
+
+.enemy-name {
+    font-size: 30px;
+    font-weight: bold;
+    padding-left: 20px;
+    text-align: left;
+    color: lighten($white, 5%);
+    font-family: serif;
+    float: right;
+    & ul {
+        list-style: none;
+
+        & li {
+            font-family: serif;
+        }
+    }    
+}
+
+
+.attack-menu {
+    display: none;
+    position: absolute;
+    right:0;
+    top: -20px;
+    height: 146px;
+    width: 180px;
+    background: linear-gradient(to right, blue 0%, darken(blue, 5%) 100%);
+    border: 3px solid darken($white, 10%);
+    box-shadow: -2px 2px 0 darken(blue, 15%);
+    border-radius: 4px;
+    & ul {
+        list-style: none;
+        margin-top: 20px;
+        padding-left: 5px;
+
+        & li {
+            font-size: 24px;
+            font-family: serif;
+            cursor: pointer;
+        }
+    }
+}
+
+.battle-log {
+    width: 950px;
+    height: 80px;
+    background: linear-gradient(to right, blue 0%, darken(blue, 5%) 100%);
+    border-radius: 4px;
+    border: 3px solid darken($white, 10%);
+    position: absolute;
+    top:3px;
+    left: 5px;
+    opacity: 0;
+}
